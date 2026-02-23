@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Grade Calculator - StudyKit</title>
+  <meta name="description" content="Find the final exam score required to reach your target course grade.">
+  <meta name="keywords" content="final grade calculator, required exam score, grade target">
+  <link rel="canonical" href="https://devtoolbox.dedyn.io/studykit/final-grade-calculator.html">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Final Grade Calculator - StudyKit">
+  <meta property="og:description" content="Reverse-calculate exam requirements from your grade target.">
+  <meta property="og:url" content="https://devtoolbox.dedyn.io/studykit/final-grade-calculator.html">
+  <meta property="og:site_name" content="StudyKit">
+  <meta property="og:image" content="https://devtoolbox.dedyn.io/og/default.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Final Grade Calculator - StudyKit">
+  <meta name="twitter:description" content="Reverse-calculate exam requirements from your grade target.">
+  <meta name="twitter:image" content="https://devtoolbox.dedyn.io/og/default.png">
+  <link rel="stylesheet" href="/studykit/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "StudyKit Final Grade Calculator",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "url": "https://devtoolbox.dedyn.io/studykit/final-grade-calculator.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "StudyKit",
+            "item": "https://devtoolbox.dedyn.io/studykit/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Final Grade Calculator",
+            "item": "https://devtoolbox.dedyn.io/studykit/final-grade-calculator.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What if the required score is over 100%?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "That target is not reachable under the current weighting assumptions. You may need extra credit or a lower target."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I include assignment categories?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This simplified model uses current overall grade and remaining final weight."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I use this as a grading dispute tool?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Use official course records and policies for any formal grade discussions."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="site-wrap">
+    <header class="topbar">
+      <a class="brand" href="/studykit/">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>StudyKit</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/studykit/">Home</a>
+        <a href="/studykit/gpa-calculator.html">GPA</a>
+        <a href="/studykit/study-time-calculator.html">Study Time</a>
+        <a href="/kits/">All Kits</a>
+        <a href="/datekit/?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-final-nav-date">DateKit</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="panel hero">
+        <h1>Final Grade Calculator <span class="badge">Target planning</span></h1>
+        <p>Estimate what final-exam score you need and compare it against your expected performance.</p>
+      </section>
+
+      <section class="panel card">
+        <div class="grid form-grid">
+          <div>
+            <label for="currentGrade">Current grade before final (%)</label>
+            <input id="currentGrade" type="number" min="0" max="100" step="0.1" value="82">
+          </div>
+          <div>
+            <label for="completedWeight">Course weight already completed (%)</label>
+            <input id="completedWeight" type="number" min="1" max="99" step="0.1" value="75">
+          </div>
+          <div>
+            <label for="targetGrade">Target final course grade (%)</label>
+            <input id="targetGrade" type="number" min="0" max="100" step="0.1" value="88">
+          </div>
+          <div>
+            <label for="expectedFinal">Expected final exam score (%)</label>
+            <input id="expectedFinal" type="number" min="0" max="100" step="0.1" value="90">
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="calculateBtn">Calculate Required Final</button>
+        </div>
+
+        <div id="result" class="result" aria-live="polite">
+          <strong>Your final exam target will appear here.</strong>
+        </div>
+      </section>
+
+      <section class="panel card" style="margin-top:14px;">
+        <h3>Final Grade FAQ</h3>
+        <p><strong>How is the required final score calculated?</strong><br>Required score = (target - current x completed weight) / final exam weight.</p>
+        <p><strong>What if my final is not the only remaining assessment?</strong><br>Adjust the completed-weight input so the remaining portion matches your actual syllabus.</p>
+        <p><strong>What should I do if I need a very high score?</strong><br>Prioritize this course in your weekly plan using the <a href="/studykit/study-time-calculator.html?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-final-faq-study">Study Time Calculator</a>.</p>
+      </section>
+
+      <section class="panel card" style="margin-top:14px;">
+        <h3>Related Tools</h3>
+        <p>Estimate your semester baseline in <a href="/studykit/gpa-calculator.html?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-final-related-gpa">GPA Calculator</a>, then use <a href="/datekit/?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-final-related-date">DateKit</a> to map exact countdown days to your exam date.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const currentGradeInput = document.getElementById('currentGrade');
+    const completedWeightInput = document.getElementById('completedWeight');
+    const targetGradeInput = document.getElementById('targetGrade');
+    const expectedFinalInput = document.getElementById('expectedFinal');
+    const result = document.getElementById('result');
+
+    function toFixedSafe(value) {
+      return Number.isFinite(value) ? value.toFixed(2) : '0.00';
+    }
+
+    function calculateFinalGrade() {
+      const currentGrade = Number(currentGradeInput.value);
+      const completedWeight = Number(completedWeightInput.value);
+      const targetGrade = Number(targetGradeInput.value);
+      const expectedFinal = Number(expectedFinalInput.value);
+
+      if (![currentGrade, completedWeight, targetGrade, expectedFinal].every(Number.isFinite)) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Please enter valid numeric values in all fields.</strong>';
+        return;
+      }
+
+      if (currentGrade < 0 || currentGrade > 100 || targetGrade < 0 || targetGrade > 100 || expectedFinal < 0 || expectedFinal > 100) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Grade percentages must stay between 0 and 100.</strong>';
+        return;
+      }
+
+      if (completedWeight <= 0 || completedWeight >= 100) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Completed weight must be between 0 and 100 (exclusive).</strong>';
+        return;
+      }
+
+      const completedRatio = completedWeight / 100;
+      const finalWeightRatio = 1 - completedRatio;
+      const requiredFinal = (targetGrade - currentGrade * completedRatio) / finalWeightRatio;
+      const projectedCourseGrade = currentGrade * completedRatio + expectedFinal * finalWeightRatio;
+
+      let feasibilityNote = '';
+      let style = 'result ok';
+
+      if (requiredFinal > 100) {
+        style = 'result warn';
+        feasibilityNote = 'Required score is above 100%, so the target is not reachable under current assumptions.';
+      } else if (requiredFinal < 0) {
+        feasibilityNote = 'You already exceed the target based on completed work.';
+      } else if (requiredFinal >= 95) {
+        style = 'result warn';
+        feasibilityNote = 'Required score is very high. Build a focused exam plan early.';
+      } else {
+        feasibilityNote = 'Target appears reachable with structured preparation.';
+      }
+
+      result.className = style;
+      result.innerHTML = `
+        <strong>Required final exam score: ${toFixedSafe(requiredFinal)}%</strong>
+        <ul>
+          <li>Final exam weight: ${toFixedSafe(finalWeightRatio * 100)}%</li>
+          <li>Projected course grade at expected exam score (${toFixedSafe(expectedFinal)}%): ${toFixedSafe(projectedCourseGrade)}%</li>
+          <li>Gap to target: ${toFixedSafe(targetGrade - projectedCourseGrade)}%</li>
+        </ul>
+        <p class="small">${feasibilityNote}</p>
+      `;
+    }
+
+    document.getElementById('calculateBtn').addEventListener('click', calculateFinalGrade);
+    calculateFinalGrade();
+  </script>
+</body>
+</html>

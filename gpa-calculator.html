@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPA Calculator - StudyKit</title>
+  <meta name="description" content="Calculate weighted GPA by entering course grades and credit hours.">
+  <meta name="keywords" content="gpa calculator, weighted gpa, grade point average">
+  <link rel="canonical" href="https://devtoolbox.dedyn.io/studykit/gpa-calculator.html">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GPA Calculator - StudyKit">
+  <meta property="og:description" content="Compute weighted GPA with letter grades and credit hours.">
+  <meta property="og:url" content="https://devtoolbox.dedyn.io/studykit/gpa-calculator.html">
+  <meta property="og:site_name" content="StudyKit">
+  <meta property="og:image" content="https://devtoolbox.dedyn.io/og/default.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GPA Calculator - StudyKit">
+  <meta name="twitter:description" content="Compute weighted GPA with letter grades and credit hours.">
+  <meta name="twitter:image" content="https://devtoolbox.dedyn.io/og/default.png">
+  <link rel="stylesheet" href="/studykit/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "StudyKit GPA Calculator",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "url": "https://devtoolbox.dedyn.io/studykit/gpa-calculator.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "StudyKit",
+            "item": "https://devtoolbox.dedyn.io/studykit/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "GPA Calculator",
+            "item": "https://devtoolbox.dedyn.io/studykit/gpa-calculator.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does this calculator support weighted credit hours?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Each course contributes by grade points multiplied by credit hours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I leave unused course rows blank?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Leave credit hours at zero for rows you do not need."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this an official transcript GPA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Use your institution's official policy as the final source."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="site-wrap">
+    <header class="topbar">
+      <a class="brand" href="/studykit/">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>StudyKit</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/studykit/">Home</a>
+        <a href="/studykit/final-grade-calculator.html">Final Grade</a>
+        <a href="/studykit/study-time-calculator.html">Study Time</a>
+        <a href="/kits/">All Kits</a>
+        <a href="/focuskit/?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-gpa-nav-focus">FocusKit</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="panel hero">
+        <h1>GPA Calculator <span class="badge">Weighted scale</span></h1>
+        <p>Enter course grades and credit hours to calculate your weighted GPA instantly.</p>
+      </section>
+
+      <section class="panel card">
+        <div class="course-list" id="courseList">
+          <div class="course-row">
+            <div>
+              <label for="course1">Course 1 (optional name)</label>
+              <input id="course1" type="text" placeholder="Course name">
+            </div>
+            <div>
+              <label for="grade1">Letter grade</label>
+              <select id="grade1">
+                <option value="4.0">A (4.0)</option>
+                <option value="3.7">A- (3.7)</option>
+                <option value="3.3">B+ (3.3)</option>
+                <option value="3.0">B (3.0)</option>
+                <option value="2.7">B- (2.7)</option>
+                <option value="2.3">C+ (2.3)</option>
+                <option value="2.0">C (2.0)</option>
+                <option value="1.7">C- (1.7)</option>
+                <option value="1.3">D+ (1.3)</option>
+                <option value="1.0">D (1.0)</option>
+                <option value="0.0">F (0.0)</option>
+              </select>
+            </div>
+            <div>
+              <label for="credits1">Credit hours</label>
+              <input id="credits1" type="number" min="0" max="12" step="0.5" value="3">
+            </div>
+          </div>
+          <div class="course-row">
+            <div>
+              <label for="course2">Course 2</label>
+              <input id="course2" type="text" placeholder="Course name">
+            </div>
+            <div>
+              <label for="grade2">Letter grade</label>
+              <select id="grade2">
+                <option value="4.0">A (4.0)</option>
+                <option value="3.7" selected>A- (3.7)</option>
+                <option value="3.3">B+ (3.3)</option>
+                <option value="3.0">B (3.0)</option>
+                <option value="2.7">B- (2.7)</option>
+                <option value="2.3">C+ (2.3)</option>
+                <option value="2.0">C (2.0)</option>
+                <option value="1.7">C- (1.7)</option>
+                <option value="1.3">D+ (1.3)</option>
+                <option value="1.0">D (1.0)</option>
+                <option value="0.0">F (0.0)</option>
+              </select>
+            </div>
+            <div>
+              <label for="credits2">Credit hours</label>
+              <input id="credits2" type="number" min="0" max="12" step="0.5" value="3">
+            </div>
+          </div>
+          <div class="course-row">
+            <div>
+              <label for="course3">Course 3</label>
+              <input id="course3" type="text" placeholder="Course name">
+            </div>
+            <div>
+              <label for="grade3">Letter grade</label>
+              <select id="grade3">
+                <option value="4.0">A (4.0)</option>
+                <option value="3.7">A- (3.7)</option>
+                <option value="3.3" selected>B+ (3.3)</option>
+                <option value="3.0">B (3.0)</option>
+                <option value="2.7">B- (2.7)</option>
+                <option value="2.3">C+ (2.3)</option>
+                <option value="2.0">C (2.0)</option>
+                <option value="1.7">C- (1.7)</option>
+                <option value="1.3">D+ (1.3)</option>
+                <option value="1.0">D (1.0)</option>
+                <option value="0.0">F (0.0)</option>
+              </select>
+            </div>
+            <div>
+              <label for="credits3">Credit hours</label>
+              <input id="credits3" type="number" min="0" max="12" step="0.5" value="3">
+            </div>
+          </div>
+          <div class="course-row">
+            <div>
+              <label for="course4">Course 4</label>
+              <input id="course4" type="text" placeholder="Course name">
+            </div>
+            <div>
+              <label for="grade4">Letter grade</label>
+              <select id="grade4">
+                <option value="4.0">A (4.0)</option>
+                <option value="3.7">A- (3.7)</option>
+                <option value="3.3">B+ (3.3)</option>
+                <option value="3.0" selected>B (3.0)</option>
+                <option value="2.7">B- (2.7)</option>
+                <option value="2.3">C+ (2.3)</option>
+                <option value="2.0">C (2.0)</option>
+                <option value="1.7">C- (1.7)</option>
+                <option value="1.3">D+ (1.3)</option>
+                <option value="1.0">D (1.0)</option>
+                <option value="0.0">F (0.0)</option>
+              </select>
+            </div>
+            <div>
+              <label for="credits4">Credit hours</label>
+              <input id="credits4" type="number" min="0" max="12" step="0.5" value="3">
+            </div>
+          </div>
+          <div class="course-row">
+            <div>
+              <label for="course5">Course 5</label>
+              <input id="course5" type="text" placeholder="Course name">
+            </div>
+            <div>
+              <label for="grade5">Letter grade</label>
+              <select id="grade5">
+                <option value="4.0">A (4.0)</option>
+                <option value="3.7">A- (3.7)</option>
+                <option value="3.3">B+ (3.3)</option>
+                <option value="3.0">B (3.0)</option>
+                <option value="2.7" selected>B- (2.7)</option>
+                <option value="2.3">C+ (2.3)</option>
+                <option value="2.0">C (2.0)</option>
+                <option value="1.7">C- (1.7)</option>
+                <option value="1.3">D+ (1.3)</option>
+                <option value="1.0">D (1.0)</option>
+                <option value="0.0">F (0.0)</option>
+              </select>
+            </div>
+            <div>
+              <label for="credits5">Credit hours</label>
+              <input id="credits5" type="number" min="0" max="12" step="0.5" value="3">
+            </div>
+          </div>
+          <div class="course-row">
+            <div>
+              <label for="course6">Course 6</label>
+              <input id="course6" type="text" placeholder="Course name">
+            </div>
+            <div>
+              <label for="grade6">Letter grade</label>
+              <select id="grade6">
+                <option value="4.0">A (4.0)</option>
+                <option value="3.7">A- (3.7)</option>
+                <option value="3.3">B+ (3.3)</option>
+                <option value="3.0">B (3.0)</option>
+                <option value="2.7">B- (2.7)</option>
+                <option value="2.3">C+ (2.3)</option>
+                <option value="2.0" selected>C (2.0)</option>
+                <option value="1.7">C- (1.7)</option>
+                <option value="1.3">D+ (1.3)</option>
+                <option value="1.0">D (1.0)</option>
+                <option value="0.0">F (0.0)</option>
+              </select>
+            </div>
+            <div>
+              <label for="credits6">Credit hours</label>
+              <input id="credits6" type="number" min="0" max="12" step="0.5" value="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="calculateBtn">Calculate GPA</button>
+        </div>
+
+        <div id="result" class="result" aria-live="polite">
+          <strong>Your GPA estimate will appear here.</strong>
+        </div>
+      </section>
+
+      <section class="panel card" style="margin-top:14px;">
+        <h3>GPA FAQ</h3>
+        <p><strong>Can I include pass/fail courses?</strong><br>If a course does not affect GPA, set its credit hours to 0.</p>
+        <p><strong>Should I round each class first?</strong><br>No. Let the calculator aggregate points first, then round the final GPA value.</p>
+        <p><strong>What next after GPA planning?</strong><br>Use the <a href="/studykit/final-grade-calculator.html?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-gpa-faq-final">Final Grade Calculator</a> for your highest-impact courses.</p>
+      </section>
+
+      <section class="panel card" style="margin-top:14px;">
+        <h3>Related Tools</h3>
+        <p>Use <a href="/studykit/final-grade-calculator.html?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-gpa-related-final">Final Grade Calculator</a> to set exam targets and <a href="/focuskit/time-block-calculator.html?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-gpa-related-focus">FocusKit</a> to translate those targets into weekly execution blocks.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const result = document.getElementById('result');
+    const calculateBtn = document.getElementById('calculateBtn');
+
+    function calculateGpa() {
+      let totalPoints = 0;
+      let totalCredits = 0;
+      let includedCourses = 0;
+
+      for (let i = 1; i <= 6; i += 1) {
+        const grade = Number(document.getElementById(`grade${i}`).value);
+        const credits = Number(document.getElementById(`credits${i}`).value);
+
+        if (!Number.isFinite(grade) || !Number.isFinite(credits) || credits < 0 || credits > 12) {
+          result.className = 'result warn';
+          result.innerHTML = '<strong>Please use valid credit values between 0 and 12.</strong>';
+          return;
+        }
+
+        if (credits > 0) {
+          includedCourses += 1;
+          totalCredits += credits;
+          totalPoints += grade * credits;
+        }
+      }
+
+      if (includedCourses === 0 || totalCredits <= 0) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Add at least one course with credits greater than 0.</strong>';
+        return;
+      }
+
+      const gpa = totalPoints / totalCredits;
+      result.className = 'result ok';
+      result.innerHTML = `
+        <strong>Estimated GPA: ${gpa.toFixed(2)}</strong>
+        <ul>
+          <li>Total graded credits: ${totalCredits.toFixed(1)}</li>
+          <li>Total quality points: ${totalPoints.toFixed(2)}</li>
+          <li>Courses included: ${includedCourses}</li>
+        </ul>
+        <p class="small">This is a planning estimate. Your institution's official GPA policy always takes precedence.</p>
+      `;
+    }
+
+    calculateBtn.addEventListener('click', calculateGpa);
+    calculateGpa();
+  </script>
+</body>
+</html>

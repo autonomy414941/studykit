@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Time Calculator - StudyKit</title>
+  <meta name="description" content="Estimate daily study hours needed to cover all topics before exam day.">
+  <meta name="keywords" content="study time calculator, exam prep planner, study schedule">
+  <link rel="canonical" href="https://devtoolbox.dedyn.io/studykit/study-time-calculator.html">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Study Time Calculator - StudyKit">
+  <meta property="og:description" content="Turn exam scope and time left into a practical study workload.">
+  <meta property="og:url" content="https://devtoolbox.dedyn.io/studykit/study-time-calculator.html">
+  <meta property="og:site_name" content="StudyKit">
+  <meta property="og:image" content="https://devtoolbox.dedyn.io/og/default.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Study Time Calculator - StudyKit">
+  <meta name="twitter:description" content="Turn exam scope and time left into a practical study workload.">
+  <meta name="twitter:image" content="https://devtoolbox.dedyn.io/og/default.png">
+  <link rel="stylesheet" href="/studykit/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "StudyKit Study Time Calculator",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "url": "https://devtoolbox.dedyn.io/studykit/study-time-calculator.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "StudyKit",
+            "item": "https://devtoolbox.dedyn.io/studykit/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Study Time Calculator",
+            "item": "https://devtoolbox.dedyn.io/studykit/study-time-calculator.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How are weak topics handled?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Weak topics receive additional hours on top of baseline topic time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I include rest days?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The calculator subtracts weekly rest days from available study days."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if the plan exceeds my daily capacity?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The result highlights overload so you can reduce scope, increase days, or adjust your grade target."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="site-wrap">
+    <header class="topbar">
+      <a class="brand" href="/studykit/">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>StudyKit</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/studykit/">Home</a>
+        <a href="/studykit/gpa-calculator.html">GPA</a>
+        <a href="/studykit/final-grade-calculator.html">Final Grade</a>
+        <a href="/kits/">All Kits</a>
+        <a href="/focuskit/?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-study-nav-focus">FocusKit</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="panel hero">
+        <h1>Study Time Calculator <span class="badge">Workload planner</span></h1>
+        <p>Estimate daily study requirements from topic scope, weak areas, and your time window.</p>
+      </section>
+
+      <section class="panel card">
+        <div class="grid form-grid">
+          <div>
+            <label for="daysUntilExam">Days until exam</label>
+            <input id="daysUntilExam" type="number" min="1" max="365" step="1" value="28">
+          </div>
+          <div>
+            <label for="totalTopics">Total topics to cover</label>
+            <input id="totalTopics" type="number" min="1" max="120" step="1" value="18">
+          </div>
+          <div>
+            <label for="weakTopics">Weak topics (subset)</label>
+            <input id="weakTopics" type="number" min="0" max="120" step="1" value="6">
+          </div>
+          <div>
+            <label for="hoursPerTopic">Base hours per topic</label>
+            <input id="hoursPerTopic" type="number" min="0.25" max="8" step="0.25" value="1.5">
+          </div>
+          <div>
+            <label for="extraHoursWeak">Extra hours per weak topic</label>
+            <input id="extraHoursWeak" type="number" min="0" max="6" step="0.25" value="0.75">
+          </div>
+          <div>
+            <label for="restDaysPerWeek">Rest days per week</label>
+            <input id="restDaysPerWeek" type="number" min="0" max="3" step="1" value="1">
+          </div>
+          <div>
+            <label for="availableHoursPerDay">Available study hours per day</label>
+            <input id="availableHoursPerDay" type="number" min="0.5" max="16" step="0.25" value="2.5">
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="calculateBtn">Build Study Plan</button>
+        </div>
+
+        <div id="result" class="result" aria-live="polite">
+          <strong>Your study workload estimate will appear here.</strong>
+        </div>
+      </section>
+
+      <section class="panel card" style="margin-top:14px;">
+        <h3>Study Time FAQ</h3>
+        <p><strong>How conservative should base hours be?</strong><br>Use your recent real pace, then add weak-topic overhead instead of forcing an aggressive baseline.</p>
+        <p><strong>Why include rest days?</strong><br>Scheduled recovery reduces burnout and preserves quality in the final week.</p>
+        <p><strong>What if this plan looks too heavy?</strong><br>Lower the topic scope, extend timeline, or prioritize highest-weight exam sections first.</p>
+      </section>
+
+      <section class="panel card" style="margin-top:14px;">
+        <h3>Related Tools</h3>
+        <p>Use <a href="/datekit/?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-study-related-date">DateKit</a> for exact schedule offsets and <a href="/focuskit/focus-session-calculator.html?utm_source=studykit&amp;utm_medium=internal&amp;utm_campaign=crosspromo-top-organic&amp;utm_content=studykit-study-related-focus">FocusKit</a> to convert daily target hours into repeatable session cycles.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const daysUntilExamInput = document.getElementById('daysUntilExam');
+    const totalTopicsInput = document.getElementById('totalTopics');
+    const weakTopicsInput = document.getElementById('weakTopics');
+    const hoursPerTopicInput = document.getElementById('hoursPerTopic');
+    const extraHoursWeakInput = document.getElementById('extraHoursWeak');
+    const restDaysPerWeekInput = document.getElementById('restDaysPerWeek');
+    const availableHoursPerDayInput = document.getElementById('availableHoursPerDay');
+    const result = document.getElementById('result');
+
+    function calculateStudyPlan() {
+      const daysUntilExam = Number(daysUntilExamInput.value);
+      const totalTopics = Number(totalTopicsInput.value);
+      const weakTopics = Number(weakTopicsInput.value);
+      const hoursPerTopic = Number(hoursPerTopicInput.value);
+      const extraHoursWeak = Number(extraHoursWeakInput.value);
+      const restDaysPerWeek = Number(restDaysPerWeekInput.value);
+      const availableHoursPerDay = Number(availableHoursPerDayInput.value);
+
+      if (![daysUntilExam, totalTopics, weakTopics, hoursPerTopic, extraHoursWeak, restDaysPerWeek, availableHoursPerDay].every(Number.isFinite)) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Please enter valid numeric values in all fields.</strong>';
+        return;
+      }
+
+      if (daysUntilExam < 1 || totalTopics < 1 || hoursPerTopic <= 0 || extraHoursWeak < 0 || availableHoursPerDay <= 0) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Use positive values for timeline, topic count, and study capacity.</strong>';
+        return;
+      }
+
+      if (!Number.isInteger(totalTopics) || !Number.isInteger(weakTopics) || !Number.isInteger(restDaysPerWeek)) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Topics and rest days must be whole numbers.</strong>';
+        return;
+      }
+
+      if (weakTopics < 0 || weakTopics > totalTopics) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Weak topics must be between 0 and total topics.</strong>';
+        return;
+      }
+
+      if (restDaysPerWeek < 0 || restDaysPerWeek > 3) {
+        result.className = 'result warn';
+        result.innerHTML = '<strong>Rest days per week should be between 0 and 3.</strong>';
+        return;
+      }
+
+      const baselineHours = totalTopics * hoursPerTopic;
+      const weakTopicExtraHours = weakTopics * extraHoursWeak;
+      const totalHoursNeeded = baselineHours + weakTopicExtraHours;
+      const restDaysTotal = Math.floor((daysUntilExam / 7) * restDaysPerWeek);
+      const studyDays = Math.max(1, daysUntilExam - restDaysTotal);
+      const requiredHoursPerDay = totalHoursNeeded / studyDays;
+      const requiredHoursPerWeek = requiredHoursPerDay * 7;
+      const spareHoursPerDay = availableHoursPerDay - requiredHoursPerDay;
+
+      const overload = spareHoursPerDay < 0;
+      result.className = overload ? 'result warn' : 'result ok';
+
+      const guidance = overload
+        ? 'Plan exceeds your stated daily capacity. Reduce scope, add days, or increase available study hours.'
+        : 'Plan is within your stated capacity. Keep one buffer day each week for review and catch-up.';
+
+      result.innerHTML = `
+        <strong>Required study pace: ${requiredHoursPerDay.toFixed(2)} hours/day</strong>
+        <ul>
+          <li>Total estimated study hours: ${totalHoursNeeded.toFixed(2)}</li>
+          <li>Study days available: ${studyDays} (after ${restDaysTotal} rest day(s))</li>
+          <li>Required weekly hours: ${requiredHoursPerWeek.toFixed(2)}</li>
+          <li>Daily capacity delta: ${spareHoursPerDay.toFixed(2)} hours/day</li>
+        </ul>
+        <p class="small">${guidance}</p>
+      `;
+    }
+
+    document.getElementById('calculateBtn').addEventListener('click', calculateStudyPlan);
+    calculateStudyPlan();
+  </script>
+</body>
+</html>
